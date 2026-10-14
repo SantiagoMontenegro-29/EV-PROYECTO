@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tu catálogo personal de canciones de Los Enanitos Verdes.">
+    <title>Enanitos Verdes | Mi colección</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <header class="cabecera">
+        <a class="marca" href="#inicio" aria-label="Ir al inicio"><span class="marca-icono"
+                aria-hidden="true">ev.</span> MI COLECCIÓN</a>
+        <a class="enlace" href="#coleccion">Ver canciones <span aria-hidden="true">↗</span></a>
+    </header>
+    <main id="inicio">
+        <section class="portada" aria-labelledby="titulo-principal">
+            <div>
+                <p class="etiqueta">TODOS LOS TEMAS DE LOS ENANITOS VERDES</p>
+                <h1 id="titulo-principal">Los Enanitos<br><span>Verdes.</span></h1>
+                <p class="introduccion">Una lección me dio la vida: <br> Tenés que hacer lo que el corazón diga</p>
+                <a class="boton boton-principal" href="#titulo">Agregar una canción <span
+                        aria-hidden="true">+</span></a>
+            </div>
+            <div class="disco-contenedor" aria-hidden="true">
+                <div class="disco">
+                    <div class="disco-centro"><span>LOS ENANITOS<br>VERDES</span><small>MI COLECCION</small><i></i></div>
+                </div>
+                <span class="disco-nota">Entre físico y personalidad, prefiero morirnos de la risa.</span>
+            </div>
+        </section>
+        <section class="estadisticas" aria-label="Resumen de tu colección">
+            <div><strong id="total-canciones">0</strong><span>Canciones guardadas</span></div>
+            <div><strong id="total-escuchadas">0</strong><span>Ya escuchadas</span></div>
+            <div><strong id="total-pendientes">0</strong><span>Pendientes</span></div>
+        </section>
+        <div class="contenido">
+            <aside class="panel-lateral">
+                <section class="panel" aria-labelledby="titulo-formulario">
+                    <p class="etiqueta">AGREGA UN TEMITA</p>
+                    <h2 id="titulo-formulario">Nueva canción</h2>
+                    <form id="formulario-cancion">
+                        <label for="titulo">Título de la canción</label>
+                        <input id="titulo" name="titulo" maxlength="100" placeholder="" required>
+                        <label for="album">Álbum</label>
+                        <input id="album" name="album" maxlength="100" placeholder="" required>
+                        <label for="calificacion">Mi calificación</label>
+                        <select id="calificacion" name="calificacion">
+                            <option value="0">Sin calificar todavía</option>
+                            <option value="1">1 / 5</option>
+                            <option value="2">2 / 5</option>
+                            <option value="3">3 / 5</option>
+                            <option value="4">4 / 5</option>
+                            <option value="5">5 / 5</option>
+                        </select>
+                        <label for="estado">Estado</label>
+                        <select id="estado" name="estado">
+                            <option value="pendiente">Pendiente</option>
+                            <option value="escuchada">Escuchada</option>
+                        </select>
+                        <button id="boton-guardar" class="boton boton-principal" type="submit">Guardar canción
+                            +</button>
+                        <button id="boton-cancelar" class="boton boton-secundario" type="button" hidden>Cancelar
+                            edición</button>
+                    </form>
+                </section>
+                <section class="panel clima" aria-labelledby="titulo-clima">
+                    <p class="etiqueta">TIEMPOS Y MUSICA</p>
+                    <h2 id="titulo-clima">Mi Clima</h2>
+                    <p class="ayuda">Con OpenWeather</p>
+                    <form id="formulario-clima">
+                        <label for="ciudad">Ciudad</label>
+                        <input id="ciudad" name="ciudad" value="Cordoba, AR" maxlength="100" required>
+                        <label for="api-key">API Key de OpenWeather</label>
+                        <input id="api-key" name="api-key" type="password" autocomplete="off"
+                            placeholder="" required>
+                        <p class="ayuda">La API se usa y no se guarda</p>
+                        <button id="boton-clima" class="boton boton-secundario" type="submit">Consultar clima ↗</button>
+                    </form>
+                    <div id="widget-clima" role="status" aria-live="polite">Ingresá los datos para ver el clima.
+                    </div>
+                </section>
+            </aside>
+            <section class="coleccion" id="coleccion" aria-labelledby="titulo-coleccion">
+                <div class="titulo-coleccion">
+                    <div>
+                        <p class="etiqueta">MI SELECCION, MIS TEMAS</p>
+                        <h2 id="titulo-coleccion">Mi colección de Canciones</h2>
+                    </div><span class="sello">EV / ENANITOS VERDES</span>
+                </div>
+                <div class="filtros">
+                    <div><label for="busqueda">Buscar canción o álbum</label><input id="busqueda" type="search"
+                            placeholder="" maxlength="100"></div>
+                    <div><label for="filtro-estado">Filtro de Estado</label><select id="filtro-estado">
+                            <option value="todas">Todas</option>
+                            <option value="pendiente">Pendientes</option>
+                            <option value="escuchada">Escuchadas</option>
+                        </select></div>
+                </div>
+                <p id="mensaje" class="mensaje" role="status" aria-live="polite"></p>
+                <p id="cantidad-resultados" class="ayuda"></p>
+                <div id="lista-canciones" class="lista-canciones"></div>
+            </section>
+        </div>
+    </main>
+    <footer><span class="marca-pie">ev.</span>
+        <p>Hay que correr el riesgo, de levantarse y seguir cayendo.</p><span>Santiago Montenegro</span>
+    </footer>
+    <template id="plantilla-cancion">
+        <article class="tarjeta">
+            <div class="tarjeta-superior"><span class="numero-track" aria-hidden="true"></span><span
+                    class="estado-cancion"></span></div>
+            <h3 class="nombre-cancion"></h3>
+            <p class="album-cancion"></p>
+            <p class="calificacion-cancion"></p>
+            <div class="acciones">
+                <button class="boton boton-estado" type="button" data-accion="estado"></button>
+                <button class="boton boton-texto" type="button" data-accion="editar">Editar</button>
+                <button class="boton boton-texto eliminar" type="button" data-accion="eliminar">Eliminar</button>
+            </div>
+        </article>
+    </template>
+</body>
+
+</html>
